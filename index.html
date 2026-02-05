@@ -30,7 +30,6 @@
       <a
         href="#about"
         class="btn animate-bottom"
-        onclick="this.style.animation = 'button-click 0.5s ease'"
         >View my work ↓</a
       >
     </section>
@@ -139,23 +138,27 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       const navbar = document.querySelector(".navbar");
       const hero = document.querySelector(".hero");
 
-      function toggleNavbar() {
-        if (window.scrollY >= hero.offsetHeight) {
-          navbar.classList.add("show");
-        } else {
-          navbar.classList.remove("show");
-        }
-      }
+      // Intersection Observer for navbar visibility
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navbar.classList.remove("show");
+          } else {
+            navbar.classList.add("show");
+          }
+        });
+      }, { threshold: 0 });
 
-      window.addEventListener("scroll", toggleNavbar);
-      window.addEventListener("load", toggleNavbar);
+      heroObserver.observe(hero);
 
       // Add click event listener to "View my work" button
       document
         .querySelector('.btn[href="#about"]')
-        .addEventListener("click", function () {
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          this.style.animation = 'button-click 0.5s ease';
+          document.getElementById('about').scrollIntoView({behavior: 'smooth'});
           const aboutImage = document.querySelector(".about-image img");
-          const passionateText = document.getElementById("passionate-text");
           const passionateParagraph = document.getElementById("passionate-paragraph");
 
           // Apply fade-in animations
@@ -241,6 +244,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
     </script>
   </body>
 </html>
+
 
 
 
