@@ -147,9 +147,20 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
             navbar.classList.add("show");
           }
         });
-      }, { threshold: 0 });
+      }, { threshold: 0.1 });
 
       heroObserver.observe(hero);
+
+      // Intersection Observer for about section to hide navbar
+      const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navbar.classList.remove("show");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      aboutObserver.observe(aboutSection);
 
       // Add click event listener to "View my work" button
       document
@@ -157,7 +168,10 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         .addEventListener("click", function (e) {
           e.preventDefault();
           this.style.animation = 'button-click 0.5s ease';
-          navbar.classList.add("show");
+          // Only show navbar if not in hero section
+          if (!heroObserver.takeRecords().some(entry => entry.isIntersecting)) {
+            navbar.classList.add("show");
+          }
           document.getElementById('about').scrollIntoView({behavior: 'smooth'});
           const aboutImage = document.querySelector(".about-image img");
           const passionateParagraph = document.getElementById("passionate-paragraph");
@@ -166,6 +180,17 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
           aboutImage.style.animation = "fadeInLeft 1.5s ease-in-out forwards";
           passionateParagraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
         });
+
+      // Add event listeners to navbar links to show navbar
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (link.getAttribute('href') === '#about') {
+            navbar.classList.remove("show");
+          } else {
+            navbar.classList.add("show");
+          }
+        });
+      });
 
       // Typing animation
       const typingText = document.getElementById('typing-text');
