@@ -726,22 +726,16 @@ footer {
   display: flex;
   gap: 10px;
 }
-
-.logo {
-  width: 24px;
-  height: 24px;
-  filter: invert(1);
+.logos img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
-
-.github-logo {
-  width: 24px;
-  height: 24px;
-  filter: invert(1);
-}
-
+.logo,
+.github-logo,
 .linkedin-logo {
   width: 24px;
   height: 24px;
+  image-rendering: -webkit-optimize-contrast;
   filter: invert(1);
 }
 
