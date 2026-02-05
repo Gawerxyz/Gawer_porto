@@ -28,7 +28,7 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 0;
-  pointer-events: none; 
+  pointer-events: none;
 }
 #contact,
 .contact-form {
@@ -758,6 +758,84 @@ footer {
   font-size: 14px;
   opacity: 0.7;
   margin: 0;
+}
+
+/* Media query for split screens and smaller desktops */
+@media (max-width: 1024px) {
+  /* Navbar adjustments */
+  .navbar {
+    padding: 0 40px;
+  }
+
+  .nav-container {
+    padding: 0 10%;
+  }
+
+  .nav-menu {
+    gap: 20px;
+  }
+
+  /* Hero adjustments */
+  .hero h1 {
+    font-size: 50px;
+  }
+
+  .hero p {
+    font-size: 26px;
+  }
+
+  /* About section adjustments */
+  .about {
+    padding: 80px 8% 0;
+  }
+
+  .about-container {
+    gap: 50px;
+  }
+
+  .about-image img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .about-content p {
+    font-size: 16px;
+    max-width: 450px;
+  }
+
+  /* Projects section adjustments */
+  .projects {
+    padding: 80px 8%;
+  }
+
+  .project {
+    gap: 30px;
+  }
+
+  .project__image-image {
+    height: 400px;
+  }
+
+  .project__info {
+    padding: 0 10px;
+  }
+
+  .project__title {
+    font-size: 24px;
+  }
+
+  .project__description {
+    font-size: 16px;
+  }
+
+  /* Contact section adjustments */
+  .contact {
+    padding: 80px 8%;
+  }
+
+  .contact-info {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 .cursor {
