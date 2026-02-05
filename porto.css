@@ -245,10 +245,17 @@ body {
   opacity: 1;
 }
 
-/* Remove transition on mobile for instant navbar appearance */
+/* Remove transition and transform/opacity on mobile for instant navbar appearance */
 @media (max-width: 768px) {
   .navbar {
     transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .navbar.show {
+    transform: none;
+    opacity: 1;
   }
 }
 
