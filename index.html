@@ -137,28 +137,29 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
     <script>
       const navbar = document.querySelector(".navbar");
       const hero = document.querySelector(".hero");
+      const projects = document.querySelector("#projects");
 
-      // Intersection Observer for navbar visibility
+      // Intersection Observer for hero section - hide navbar when in hero
       const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             navbar.classList.remove("show");
-          } else {
-            navbar.classList.add("show");
           }
         });
       }, { threshold: 0.1 });
 
       heroObserver.observe(hero);
 
-      // Intersection Observer for about section to hide navbar
-      const aboutObserver = new IntersectionObserver((entries) => {
+      // Intersection Observer for projects section - show navbar when in projects
+      const projectsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            navbar.classList.remove("show");
+            navbar.classList.add("show");
           }
         });
       }, { threshold: 0.1 });
+
+      projectsObserver.observe(projects);
 
       // Add click event listener to "View my work" button
       document
@@ -166,10 +167,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         .addEventListener("click", function (e) {
           e.preventDefault();
           this.style.animation = 'button-click 0.5s ease';
-          // Only show navbar if not in hero section
-          if (!heroObserver.takeRecords().some(entry => entry.isIntersecting)) {
-            navbar.classList.add("show");
-          }
+          navbar.classList.add("show");
           document.getElementById('about').scrollIntoView({behavior: 'smooth'});
           const aboutImage = document.querySelector(".about-image img");
           const passionateParagraph = document.getElementById("passionate-paragraph");
