@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="porto.css" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <h1>
+        <span class="animate-right white-text">Hello, I'm</span>
+        <span class="animate-left red-text">Rizki</span>
+      </h1>
+  <p>
+    <span id="typing-text"></span><span class="cursor">|</span>
+  </p>
+      <a
+        href="#about"
+        class="btn animate-bottom"
+        onclick="this.style.animation = 'button-click 0.5s ease'"
+        >View my work ↓</a
+      >
+    </section>
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <ul class="nav-menu">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="about-content-wrapper">
+        <h2>About</h2>
+        <div class="about-container">
+        <div class="about-image">
+          <img src="gojo.png.png" alt="Rizki" />
+        </div>
+        <div class="about-content">
+          <p id="passionate-paragraph">
+            <span id="passionate-text">I am a passionate</span> DWDM Engineer
+            with expertise in optical networking and telecommunications
+            infrastructure. My work involves implementing, and
+            maintaining high-capacity fiber optic networks that enable fast and
+            reliable data transmission across vast distances.
+          </p>
+          <p id="web3-paragraph">
+            As a Web3 enthusiast, I'm deeply interested in blockchain
+            technology, decentralized applications, and the future of the
+            internet. I enjoy exploring how Web3 can revolutionize industries
+            and create new opportunities for innovation and collaboration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <h2 class="projects__heading">Projects</h2>
+      <div class="project project-left">
+        <a href="#" target="_blank">
+          <div class="project__image-container">
+            <div class="project__image-image">
+              <img src="Porto.v1.png" alt="Project 1"/>
+            </div>
+          </div>
+        </a>
+        <div class="project__info">
+          <h3 class="project__title"><br/>Web Portofolio</h3>
+          <p class="project__description">A modern web portofolio built with HTML, Javascript and CSS, featuring responsive design and real-time updates.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <h2>Get In Touch</h2>
+      <p>
+        I'm always open to discussing new opportunities, interesting projects,
+        or just having a chat. Feel free to reach out!
+      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <h3>Email</h3>
+          <p>rzkgiali@gmail.com</p>
+        </div>
+        <div class="contact-item">
+          <h3>Phone</h3>
+          <p>(+62) 81367676447</p>
+        </div>
+        <div class="contact-item">
+          <h3>Location</h3>
+          <p>Jakarta, Indonesia</p>
+        </div>
+      </div>
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer id="footer">
+      <div class="footer-content">
+        <div class="logos">
+          <a href="https://x.com/Gawerxyz" target="_blank">
+            <img src="logoxfix.png" alt="Logo" class="logo">
+          </a>
+          <a href="https://github.com/Gawerxyz" target="_blank">
+            <img src="logogithub.webp" alt="GitHub Logo" class="github-logo">
+          </a>
+          <a href="https://www.linkedin.com/in/rizki-giali-rakharefano-867548211/" target="_blank">
+            <img src="logox.png" alt="LinkedIn Logo" class="linkedin-logo">
+          </a>
+        </div>
+        <p class="copyright">© Rizki 2026 By Gawerxyz</p>
+      </div>
+    </footer>
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Particles JS -->
+    <script src="porto.js"></script>
+
+    <script>
+      const navbar = document.querySelector(".navbar");
+      const hero = document.querySelector(".hero");
+
+      function toggleNavbar() {
+        if (window.scrollY >= hero.offsetHeight) {
+          navbar.classList.add("show");
+        } else {
+          navbar.classList.remove("show");
+        }
+      }
+
+      window.addEventListener("scroll", toggleNavbar);
+      window.addEventListener("load", toggleNavbar);
+
+      // Add click event listener to "View my work" button
+      document
+        .querySelector('.btn[href="#about"]')
+        .addEventListener("click", function () {
+          const aboutImage = document.querySelector(".about-image img");
+          const passionateText = document.getElementById("passionate-text");
+          const passionateParagraph = document.getElementById("passionate-paragraph");
+          const web3Paragraph = document.getElementById("web3-paragraph");
+
+          // Apply fade-in animations
+          aboutImage.style.animation = "fadeInLeft 1.5s ease-in-out forwards";
+          passionateParagraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
+          web3Paragraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
+        });
+
+      // Typing animation
+      const typingText = document.getElementById('typing-text');
+      const cursor = document.querySelector('.cursor');
+      const text = "Engineer | Web3 Enthusiast.";
+      let index = 0;
+
+      function typeWriter() {
+        if (index < text.length) {
+          typingText.innerHTML += text.charAt(index);
+          index++;
+          setTimeout(typeWriter, 100);
+        } else {
+          // Hide cursor when typing is complete
+          cursor.style.display = 'none';
+        }
+      }
+
+      // Start typing animation after page load
+      window.addEventListener('load', function() {
+        setTimeout(typeWriter, 2000); // Delay to start after other animations
+      });
+
+      // Intersection Observer for About section animations
+      const aboutSection = document.getElementById('about');
+      const aboutImage = document.querySelector(".about-image img");
+      const passionateParagraph = document.getElementById("passionate-paragraph");
+      const web3Paragraph = document.getElementById("web3-paragraph");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Trigger animations when About section comes into view
+            aboutImage.style.animation = "fadeInLeft 1.5s ease-in-out forwards";
+            passionateParagraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
+            web3Paragraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
+
+      observer.observe(aboutSection);
+
+      // Contact form functionality with EmailJS
+      (function () {
+        emailjs.init("luypt1u2Ie03h0tYX"); // PUBLIC KEY
+
+        const form = document.getElementById("contact-form");
+        const button = form.querySelector("button");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          button.disabled = true;
+          button.textContent = "Sending...";
+
+          emailjs
+            .send("service_client", "template_Gawer", {
+              name: form.name.value,
+              email: form.email.value,
+              message: form.message.value,
+            })
+            .then(() => {
+              alert("✅ Message sent successfully!");
+              form.reset();
+            })
+            .catch((error) => {
+              console.error(error);
+              alert("❌ Failed to send message");
+            })
+            .finally(() => {
+              button.disabled = false;
+              button.textContent = "Send Message";
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
