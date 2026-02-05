@@ -157,6 +157,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         .addEventListener("click", function (e) {
           e.preventDefault();
           this.style.animation = 'button-click 0.5s ease';
+          navbar.classList.add("show");
           document.getElementById('about').scrollIntoView({behavior: 'smooth'});
           const aboutImage = document.querySelector(".about-image img");
           const passionateParagraph = document.getElementById("passionate-paragraph");
