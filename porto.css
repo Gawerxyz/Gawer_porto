@@ -245,6 +245,13 @@ body {
   opacity: 1;
 }
 
+/* Remove transition on mobile for instant navbar appearance */
+@media (max-width: 768px) {
+  .navbar {
+    transition: none;
+  }
+}
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
