@@ -28,7 +28,7 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 0;
-  pointer-events: none; /* 🔥 INI KUNCI */
+  pointer-events: none; 
 }
 #contact,
 .contact-form {
@@ -63,6 +63,18 @@ body {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1200px) {
+  .hero h1 {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .hero h1 {
+    font-size: 70px;
+  }
+}
+
 .hero p {
   margin-top: 10px;
   font-size: 32px;
@@ -78,6 +90,18 @@ body {
 @media (max-width: 480px) {
   .hero p {
     font-size: 18px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .hero p {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .hero p {
+    font-size: 36px;
   }
 }
 
@@ -263,6 +287,34 @@ body {
   color: #ff4d5a;
 }
 
+@media (min-width: 769px) and (max-width: 1200px) {
+  .navbar {
+    padding: 0 40px;
+  }
+
+  .nav-container {
+    padding: 0 10%;
+  }
+
+  .nav-menu {
+    gap: 25px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .navbar {
+    padding: 0 80px;
+  }
+
+  .nav-container {
+    padding: 0 20%;
+  }
+
+  .nav-menu {
+    gap: 35px;
+  }
+}
+
 /* About section */
 .about {
   min-height: calc(100vh - 80px);
@@ -367,6 +419,38 @@ body {
   .about-image img {
     width: 200px;
     height: 200px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .about-container {
+    gap: 60px;
+  }
+
+  .about-image img {
+    width: 350px;
+    height: 350px;
+  }
+
+  .about-content p {
+    font-size: 16px;
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .about-container {
+    gap: 100px;
+  }
+
+  .about-image img {
+    width: 450px;
+    height: 450px;
+  }
+
+  .about-content p {
+    font-size: 18px;
+    max-width: 600px;
   }
 }
 
