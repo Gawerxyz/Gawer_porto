@@ -182,11 +182,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       // Add event listeners to navbar links to show navbar
       document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
-          if (link.getAttribute('href') === '#about') {
-            navbar.classList.remove("show");
-          } else {
-            navbar.classList.add("show");
-          }
+          navbar.classList.add("show");
         });
       });
 
@@ -200,7 +196,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         if (index < text.length) {
           typingText.innerHTML += text.charAt(index);
           index++;
-          setTimeout(typeWriter, 100);
+          setTimeout(typeWriter, 70);
         } else {
           // Hide cursor when typing is complete
           cursor.style.display = 'none';
