@@ -559,6 +559,7 @@ body {
 
 .projects__heading {
   font-size: 48px;
+  margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
   color: #fff;
@@ -823,5 +824,114 @@ footer {
   51%,
   100% {
     opacity: 0;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+  /* Projects section adjustments for half laptop screen */
+  .projects {
+    padding: 80px 10%;
+  }
+
+  .project {
+    gap: 40px;
+  }
+
+  .project__image-image {
+    height: 400px;
+  }
+
+  .project__info {
+    padding: 0 15px;
+  }
+
+  .project__title {
+    font-size: 26px;
+  }
+
+  .project__description {
+    font-size: 17px;
+  }
+}
+
+/* laptop split / tablet landscape */
+@media (max-width: 1100px) {
+  .project {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-right,
+  .project-left {
+    flex-direction: column;
+  }
+
+  .project__image-image {
+    height: 350px;
+  }
+
+  .project__info {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .nav-container {
+    padding: 0 5%;
+  }
+
+  .nav-menu {
+    gap: 15px;
+  }
+
+  /* About section adjustments */
+  .about {
+    padding: 80px 5% 0;
+  }
+
+  .about-image img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .about-content p {
+    font-size: 15px;
+  }
+
+  /* Contact section adjustments */
+  .contact {
+    padding: 80px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar adjustments */
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .nav-container {
+    padding: 0 2%;
+  }
+
+  .nav-menu {
+    gap: 10px;
+  }
+
+  /* About section adjustments */
+  .about-image img {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Contact section adjustments */
+  .contact {
+    padding: 80px 2%;
   }
 }
