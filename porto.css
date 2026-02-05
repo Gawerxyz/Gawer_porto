@@ -886,6 +886,12 @@ footer {
   .project__info {
     max-width: 650px;
   }
+
+  /* Center text in contact section */
+  .contact h2,
+  .contact p {
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
