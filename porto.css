@@ -255,6 +255,13 @@ body {
   z-index: 999;
 }
 
+/* Social media browser overrides */
+.social-media .navbar {
+  position: fixed;
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .navbar.show {
   transform: translateY(0);
   opacity: 1;
