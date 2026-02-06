@@ -163,6 +163,23 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
 
       heroObserver.observe(hero);
 
+      // Scroll direction detection for navbar behavior
+      let lastScrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        const heroRect = hero.getBoundingClientRect();
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down - show navbar
+          navbar.classList.add("show");
+        } else {
+          // Scrolling up - hide navbar if in hero section
+          if (heroRect.top <= 0 && heroRect.bottom >= 0 && !isInProjects && !navbarClicked) {
+            navbar.classList.remove("show");
+          }
+        }
+        lastScrollY = currentScrollY;
+      });
+
       // Initial check to hide navbar if hero is in view on load
       if (hero.getBoundingClientRect().top <= 0 && hero.getBoundingClientRect().bottom >= 0) {
         navbar.classList.remove("show");
