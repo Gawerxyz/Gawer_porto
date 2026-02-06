@@ -149,45 +149,50 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
 
       // Detect social media browsers
       const isSocialMediaBrowser = /Instagram|Facebook|Twitter|LinkedIn|Snapchat|TikTok/i.test(navigator.userAgent);
+      if (isSocialMediaBrowser) {
+        document.body.classList.add('social-media');
+      }
 
       // Intersection Observer for hero section - hide navbar when in hero
-      const heroObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navbarClicked = false; // Reset flag when reaching hero
-            if (!isInProjects && !isSocialMediaBrowser) {
-              navbar.classList.remove("show");
+      if (!isSocialMediaBrowser) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navbarClicked = false; // Reset flag when reaching hero
+              if (!isInProjects && !isSocialMediaBrowser) {
+                navbar.classList.remove("show");
+              }
             }
-          }
-        });
-      }, { threshold: 0.1 });
+          });
+        }, { threshold: 0.1 });
 
-      heroObserver.observe(hero);
+        heroObserver.observe(hero);
 
-      // Intersection Observer for about section - show navbar when in about
-      const aboutObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navbar.classList.add("show");
-          }
-        });
-      }, { threshold: 0.1 });
+        // Intersection Observer for about section - show navbar when in about
+        const aboutObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navbar.classList.add("show");
+            }
+          });
+        }, { threshold: 0.1 });
 
-      aboutObserver.observe(about);
+        aboutObserver.observe(about);
 
-      // Intersection Observer for projects section - show navbar when in projects
-      const projectsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navbar.classList.add("show");
-            isInProjects = true;
-          } else {
-            isInProjects = false;
-          }
-        });
-      }, { threshold: 0.1 });
+        // Intersection Observer for projects section - show navbar when in projects
+        const projectsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navbar.classList.add("show");
+              isInProjects = true;
+            } else {
+              isInProjects = false;
+            }
+          });
+        }, { threshold: 0.1 });
 
-      projectsObserver.observe(projects);
+        projectsObserver.observe(projects);
+      }
 
       // Add click event listener to "View my work" button
       document
