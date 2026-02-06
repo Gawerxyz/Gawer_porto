@@ -279,10 +279,34 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       })();
     </script>
 
-    <!-- Prevent rendering in Instagram browser -->
+    <!-- Fix rendering issues in Instagram browser -->
     <script>
-      if (navigator.userAgent.includes("Instagram")) {
-        document.body.innerHTML = "<h1 style='text-align: center; margin-top: 50px;'>Please open this link in your browser for the best experience.</h1>";
+      const isInstagram = navigator.userAgent.includes("Instagram");
+      if (isInstagram) {
+        // Disable particles and heavy animations for better compatibility
+        document.addEventListener('DOMContentLoaded', function() {
+          const canvas = document.getElementById('particle-canvas');
+          if (canvas) canvas.style.display = 'none';
+
+          // Simplify animations
+          const animatedElements = document.querySelectorAll('.animate-right, .animate-left, .animate-bottom');
+          animatedElements.forEach(el => {
+            el.style.animation = 'none';
+            el.style.opacity = '1';
+          });
+
+          // Disable typing animation
+          const typingText = document.getElementById('typing-text');
+          const cursor = document.querySelector('.cursor');
+          if (typingText) {
+            typingText.textContent = "Engineer | Web3 Enthusiast.";
+            if (cursor) cursor.style.display = 'none';
+          }
+
+          // Show navbar immediately
+          const navbar = document.querySelector('.navbar');
+          if (navbar) navbar.classList.add('show');
+        });
       }
     </script>
   </body>
