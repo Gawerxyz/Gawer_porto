@@ -143,11 +143,12 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       const hero = document.querySelector(".hero");
       const projects = document.querySelector("#projects");
       let navbarClicked = false;
+      let isInProjects = false;
 
       // Intersection Observer for hero section - hide navbar when in hero
       const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !navbarClicked) {
+          if (entry.isIntersecting && !navbarClicked && !isInProjects) {
             navbar.classList.remove("show");
           }
         });
@@ -160,6 +161,9 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             navbar.classList.add("show");
+            isInProjects = true;
+          } else {
+            isInProjects = false;
           }
         });
       }, { threshold: 0.1 });
@@ -189,7 +193,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
           navbarClicked = true;
           setTimeout(() => {
             navbarClicked = false;
-          }, 1000); // Prevent hiding for 1 second after click
+          }, 1500); // Prevent hiding for 1.5 seconds after click
         });
       });
 
