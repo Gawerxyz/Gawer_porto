@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>My Portfolio</title>
+    <title>Rizki Portofolio</title>
+    <link rel="icon" href="gojo.png.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="gojo.png.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="gojo.png.png" sizes="64x64" type="image/png">
+    <link rel="icon" href="gojo.png.png" sizes="128x128" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS -->
@@ -138,11 +142,12 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       const navbar = document.querySelector(".navbar");
       const hero = document.querySelector(".hero");
       const projects = document.querySelector("#projects");
+      let navbarClicked = false;
 
       // Intersection Observer for hero section - hide navbar when in hero
       const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !navbarClicked) {
             navbar.classList.remove("show");
           }
         });
@@ -181,6 +186,10 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
           navbar.classList.add("show");
+          navbarClicked = true;
+          setTimeout(() => {
+            navbarClicked = false;
+          }, 1000); // Prevent hiding for 1 second after click
         });
       });
 
