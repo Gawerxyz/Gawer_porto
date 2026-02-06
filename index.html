@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Rizki Portofolio</title>
-    <link rel="icon" href="gojo.png.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="gojo.png.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="gojo.png.png" sizes="64x64" type="image/png">
-    <link rel="icon" href="gojo.png.png" sizes="128x128" type="image/png">
+    <link rel="icon" href="gojosatoru.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="gojosatoru.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="gojosatoru.png" sizes="64x64" type="image/png">
+    <link rel="icon" href="gojosatoru.png" sizes="128x128" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS -->
@@ -141,20 +141,36 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
     <script>
       const navbar = document.querySelector(".navbar");
       const hero = document.querySelector(".hero");
+      const about = document.querySelector("#about");
       const projects = document.querySelector("#projects");
       let navbarClicked = false;
       let isInProjects = false;
+      let isScrollingToSection = false;
 
       // Intersection Observer for hero section - hide navbar when in hero
       const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !navbarClicked && !isInProjects) {
-            navbar.classList.remove("show");
+          if (entry.isIntersecting) {
+            navbarClicked = false; // Reset flag when reaching hero
+            if (!isInProjects) {
+              navbar.classList.remove("show");
+            }
           }
         });
       }, { threshold: 0.1 });
 
       heroObserver.observe(hero);
+
+      // Intersection Observer for about section - show navbar when in about
+      const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navbar.classList.add("show");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      aboutObserver.observe(about);
 
       // Intersection Observer for projects section - show navbar when in projects
       const projectsObserver = new IntersectionObserver((entries) => {
@@ -182,8 +198,8 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
           const passionateParagraph = document.getElementById("passionate-paragraph");
 
           // Apply fade-in animations
-          aboutImage.style.animation = "fadeInLeft 1.5s ease-in-out forwards";
-          passionateParagraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
+          aboutImage.style.animation = "fadeInLeft 1.5s ease-in forwards";
+          passionateParagraph.style.animation = "fadeInRight 1.5s ease-in forwards";
         });
 
       // Add event listeners to navbar links to show navbar
@@ -191,8 +207,10 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         link.addEventListener('click', () => {
           navbar.classList.add("show");
           navbarClicked = true;
+          isScrollingToSection = true;
           setTimeout(() => {
             navbarClicked = false;
+            isScrollingToSection = false;
           }, 1500); // Prevent hiding for 1.5 seconds after click
         });
       });
@@ -211,33 +229,20 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         } else {
           // Hide cursor when typing is complete
           cursor.style.display = 'none';
+          // Show navbar after typing finishes
+          setTimeout(() => {
+            navbar.classList.add("show");
+          }, 500);
         }
       }
 
       // Start typing animation after page load
       window.addEventListener('load', function() {
+        window.scrollTo({top: 0, behavior: 'smooth'}); // Smooth scroll to top (hero section)
         setTimeout(typeWriter, 2000); // Delay to start after other animations
       });
 
-      // Intersection Observer for About section animations
-      const aboutSection = document.getElementById('about');
-      const aboutImage = document.querySelector(".about-image img");
-      const passionateParagraph = document.getElementById("passionate-paragraph");
-      const web3Paragraph = document.getElementById("web3-paragraph");
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Trigger animations when About section comes into view
-            aboutImage.style.animation = "fadeInLeft 1.5s ease-in-out forwards";
-            passionateParagraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
-            web3Paragraph.style.animation = "fadeInRight 1.5s ease-in-out forwards";
-            observer.unobserve(entry.target); // Stop observing once animated
-          }
-        });
-      }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
-
-      observer.observe(aboutSection);
 
       // Contact form functionality with EmailJS
       (function () {
