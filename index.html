@@ -163,6 +163,11 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
 
       heroObserver.observe(hero);
 
+      // Initial check to hide navbar if hero is in view on load
+      if (hero.getBoundingClientRect().top <= 0 && hero.getBoundingClientRect().bottom >= 0) {
+        navbar.classList.remove("show");
+      }
+
       // Intersection Observer for about section - show navbar when in about
       const aboutObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -231,9 +236,12 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
         } else {
           // Hide cursor when typing is complete
           cursor.style.display = 'none';
-          // Show navbar after typing finishes
+          // Show navbar after typing finishes, but only if hero is not in view
           setTimeout(() => {
-            navbar.classList.add("show");
+            const heroRect = hero.getBoundingClientRect();
+            if (heroRect.top > 0 || heroRect.bottom < 0) {
+              navbar.classList.add("show");
+            }
           }, 500);
         }
       }
@@ -281,31 +289,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       })();
     </script>
 
-    <!-- Fix rendering issues in social media browsers -->
-    <script>
-      if (isSocialMediaBrowser) {
-        // Simplify animations for better compatibility
-        document.addEventListener('DOMContentLoaded', function() {
-          // Keep background visible but simplify particles if needed
-          const canvas = document.getElementById('particle-canvas');
-          if (canvas) {
-            // Reduce particle count for performance
-            canvas.style.opacity = '0.5'; // Make it less prominent
-          }
 
-          // Simplify animations
-          const animatedElements = document.querySelectorAll('.animate-right, .animate-left, .animate-bottom');
-          animatedElements.forEach(el => {
-            el.style.animation = 'none';
-            el.style.opacity = '1';
-          });
-
-          // Show navbar immediately
-          const navbar = document.querySelector('.navbar');
-          if (navbar) navbar.classList.add('show');
-        });
-      }
-    </script>
   </body>
 </html>
 
