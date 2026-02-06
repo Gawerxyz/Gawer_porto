@@ -146,6 +146,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       let navbarClicked = false;
       let isInProjects = false;
       let isScrollingToSection = false;
+      let recentlyClickedNavbar = false;
 
 
 
@@ -158,7 +159,7 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
           navbar.classList.add("show");
         } else {
           // Scrolling up - hide navbar only if at the very top
-          if (currentScrollY < 50 && !isInProjects && !navbarClicked) {
+          if (currentScrollY < 50 && !isInProjects && !navbarClicked && !isScrollingToSection) {
             navbar.classList.remove("show");
           }
         }
@@ -189,6 +190,15 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
             isInProjects = true;
           } else {
             isInProjects = false;
+            // Ensure navbar stays visible when leaving projects section if recently clicked
+            if (!recentlyClickedNavbar) {
+              // Keep navbar visible for a moment when leaving projects
+              setTimeout(() => {
+                if (!isInProjects && !recentlyClickedNavbar) {
+                  // Only hide if still not in projects and not recently clicked
+                }
+              }, 100);
+            }
           }
         });
       }, { threshold: 0.1 });
@@ -217,10 +227,12 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
           navbar.classList.add("show");
           navbarClicked = true;
           isScrollingToSection = true;
+          recentlyClickedNavbar = true;
           setTimeout(() => {
             navbarClicked = false;
             isScrollingToSection = false;
-          }, 1500); // Prevent hiding for 1.5 seconds after click
+            recentlyClickedNavbar = false;
+          }, 2000); // Prevent hiding for 2 seconds after click
         });
       });
 
