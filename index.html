@@ -147,18 +147,14 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
       let isInProjects = false;
       let isScrollingToSection = false;
 
-      // Detect social media browsers
-      const isSocialMediaBrowser = /Instagram|Facebook|Twitter|LinkedIn|Snapchat|TikTok/i.test(navigator.userAgent);
-      if (isSocialMediaBrowser) {
-        document.body.classList.add('social-media');
-      }
+
 
       // Intersection Observer for hero section - hide navbar when in hero
       const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             navbarClicked = false; // Reset flag when reaching hero
-            if (!isInProjects && !isSocialMediaBrowser) {
+            if (!isInProjects) {
               navbar.classList.remove("show");
             }
           }
