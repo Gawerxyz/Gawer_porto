@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Rizki Portofolio</title>
-    <link rel="icon" href="gojosatoru.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="gojosatoru.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="gojosatoru.png" sizes="64x64" type="image/png">
-    <link rel="icon" href="gojosatoru.png" sizes="128x128" type="image/png">
+    <link rel="icon" href="gojo%20neon.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="gojo%20neon.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="gojo%20neon.png" sizes="64x64" type="image/png">
+    <link rel="icon" href="gojo%20neon.png" sizes="128x128" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS -->
@@ -277,6 +277,13 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
             });
         });
       })();
+    </script>
+
+    <!-- Prevent rendering in Instagram browser -->
+    <script>
+      if (navigator.userAgent.includes("Instagram")) {
+        document.body.innerHTML = "<h1 style='text-align: center; margin-top: 50px;'>Please open this link in your browser for the best experience.</h1>";
+      }
     </script>
   </body>
 </html>
