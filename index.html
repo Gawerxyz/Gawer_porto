@@ -149,31 +149,16 @@ As a Web3 enthusiast, I'm deeply interested in blockchain technology, decentrali
 
 
 
-      // Intersection Observer for hero section - hide navbar when in hero
-      const heroObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navbarClicked = false; // Reset flag when reaching hero
-            if (!isInProjects) {
-              navbar.classList.remove("show");
-            }
-          }
-        });
-      }, { threshold: 0.1 });
-
-      heroObserver.observe(hero);
-
       // Scroll direction detection for navbar behavior
       let lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
-        const heroRect = hero.getBoundingClientRect();
         if (currentScrollY > lastScrollY) {
-          // Scrolling down - show navbar
+          // Scrolling down - always show navbar
           navbar.classList.add("show");
         } else {
-          // Scrolling up - hide navbar if in hero section
-          if (heroRect.top <= 0 && heroRect.bottom >= 0 && !isInProjects && !navbarClicked) {
+          // Scrolling up - hide navbar only if at the very top
+          if (currentScrollY < 50 && !isInProjects && !navbarClicked) {
             navbar.classList.remove("show");
           }
         }
